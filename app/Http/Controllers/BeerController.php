@@ -47,7 +47,8 @@ class BeerController extends Controller
      */
     public function show($id)
     {
-        //
+        $beers = Beer::find($id);
+        return view('beers.show', ['beers' => $beers]);
     }
 
     /**
