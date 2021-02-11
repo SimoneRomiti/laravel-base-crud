@@ -43,6 +43,7 @@ class BeerController extends Controller
             'description' => 'required',
             'price' => 'required|numeric'
         ]);
+
         $data = $request->all();
         
         $beer = new Beer();
@@ -52,6 +53,9 @@ class BeerController extends Controller
         $beer->img = $data['img'];
         $beer->description = $data['description'];
         $beer->price = $data['price'];
+
+        // fill prende tutte le chiavi che ho messo in fillable nel model e fa le stesse associazioni che ho sopra utilizzando le chiavi di data
+        // $beer->fill($data);
         $beer->save();
 
         return redirect()->route('beers.show', $beer->id);
