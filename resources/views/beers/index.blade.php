@@ -14,8 +14,8 @@
 					<tr>
 						<td>{{ $item->name }}</td>
 						<td>{{ $item->type }}</td>
-						<td>{{ $item->alcohol }}</td>
-						<td>{{ $item->price }}</td>
+						<td>{{ number_format($item->alcohol, 1, ",", ".")."%" }}</td>
+						<td>{{ number_format($item->price, 2, ",", ".")."€" }}</td>
 						<td class="text-center"><a href="{{ route('beers.show', ['beer' => $item->id]) }}" class="btn btn-outline-light">Dettaglio</a></td>
 					</tr>
 				@endforeach

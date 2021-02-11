@@ -64,6 +64,6 @@
         </style>
     </head>
     <body>
-        <h1><a href="{{ route('beers.index') }}">Le nostre birre</a></h1>
+        <h1><a href="{{ route('beers.index') }}">Log in Amministratore</a></h1>
     </body>
 </html>

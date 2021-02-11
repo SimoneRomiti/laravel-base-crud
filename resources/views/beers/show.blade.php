@@ -41,6 +41,7 @@
 				</div>
 			</div>
 		</div>
+		<a href="{{ route('beers.index') }}" class="btn btn-primary">FATTO</a>
 	</div>
 	
 @endsection

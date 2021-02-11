@@ -36,6 +36,13 @@ class BeerController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:50',
+            'type' => 'required|max:50',
+            'alcohol' => 'required|numeric',
+            'description' => 'required',
+            'price' => 'required|numeric'
+        ]);
         $data = $request->all();
         
         $beer = new Beer();
@@ -48,7 +55,6 @@ class BeerController extends Controller
         $beer->save();
 
         return redirect()->route('beers.show', $beer->id);
-        // return redirect()->route('beers.index');
     }
 
     /**
@@ -60,6 +66,9 @@ class BeerController extends Controller
     public function show($id)
     {
         $beers = Beer::find($id);
+        if(empty($beers)){
+            abort('404');
+        }
         return view('beers.show', ['beers' => $beers]);
     }
 
