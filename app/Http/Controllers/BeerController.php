@@ -47,18 +47,20 @@ class BeerController extends Controller
         $data = $request->all();
         
         $beer = new Beer();
-        $beer->name = $data['name'];
-        $beer->type = $data['type'];
-        $beer->alcohol = $data['alcohol'];
-        $beer->img = $data['img'];
-        $beer->description = $data['description'];
-        $beer->price = $data['price'];
+        // $beer->name = $data['name'];
+        // $beer->type = $data['type'];
+        // $beer->alcohol = $data['alcohol'];
+        // $beer->img = $data['img'];
+        // $beer->description = $data['description'];
+        // $beer->price = $data['price'];
 
         // fill prende tutte le chiavi che ho messo in fillable nel model e fa le stesse associazioni che ho sopra utilizzando le chiavi di data
-        // $beer->fill($data);
+        $beer->fill($data);
         $beer->save();
 
-        return redirect()->route('beers.show', $beer->id);
+        return redirect()
+            ->route('beers.index')
+            ->with('message', 'La birra "'. $beer->name. '" è stata aggiunta correttamente');
     }
 
     /**
@@ -84,7 +86,8 @@ class BeerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $beer = Beer::findOrFail($id);
+        return view('beers.edit', ['beer' => $beer]);
     }
 
     /**
@@ -94,9 +97,20 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Beer $beer)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:50',
+            'type' => 'required|max:50',
+            'alcohol' => 'required|numeric',
+            'description' => 'required',
+            'price' => 'required|numeric'
+        ]);
+        $data = $request->all();
+        $beer->update($data);
+        return redirect()
+            ->route('beers.index')
+            ->with('message', 'La birra "'. $beer->name. '" è stata aggioranata correttamente');
     }
 
     /**
@@ -105,8 +119,11 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Beer $beer)
     {
-        //
+        $beer->delete();
+        return redirect()
+            ->route('beers.index')
+            ->with('message', 'La birra "' . $beer->name . '" è stata eliminata correttamente');
     }
 }

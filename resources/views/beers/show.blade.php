@@ -13,18 +13,6 @@
 				<td>{{ $item }}</td>
 			</tr>
 			@endforeach	 --}}		
-		
-
-		{{-- <div class="card bg-dark text-white" style="width: 18rem;">
-			<img src="{{ $beers->img }}" class="card-img-top" alt="">
-			<div class="card-body">
-				<h2 class="card-title">{{$beers->name}}</h2>
-				<p class="card-text"><strong>Tipo: </strong> {{ $beers->type }}</p>
-				<p class="card-text"><strong>Gradazione alcolica: </strong> {{ $beers->alcohol."%" }}</p>
-				<p class="card-text">{{ $beers->description }}</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
-  		</div>
-		</div> --}}
 
 		<div class="card mb-3 bg-dark text-white" style="max-width: 540px;">
 			<div class="row align-items-center no-gutters">

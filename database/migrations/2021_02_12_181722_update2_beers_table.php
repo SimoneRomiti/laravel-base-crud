@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateBeersTable extends Migration
+class Update2BeersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class UpdateBeersTable extends Migration
     public function up()
     {
         Schema::table('beers', function (Blueprint $table) {
-            $table->text('img')->nullable()->change();
+            $table->mediumText('img')->nullable()->change();
         });
     }
 
